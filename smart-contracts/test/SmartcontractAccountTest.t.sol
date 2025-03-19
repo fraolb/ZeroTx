@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.24;
 
-import {Test} from "forge-std/Test.sol";
+import {Test, console2} from "forge-std/Test.sol";
 import {SmartcontractAccount} from "src/SmartcontractAccount.sol";
 import {HelperConfig} from "script/HelperConfig.s.sol";
 import {DeploySmartcontractAccount} from "script/DeploySmartcontractAccount.s.sol";
@@ -34,6 +34,26 @@ contract SmartcontractAccountTest is Test {
         );
         // Act
         vm.prank(smartcontractAccount.owner());
+        smartcontractAccount.execute(dest, value, functionData);
+
+        // Assert
+        assertEq(usdc.balanceOf(address(smartcontractAccount)), AMOUNT);
+    }
+
+    function testEntryPointCanExecuteCommands() public {
+        // Arrange
+        HelperConfig.NetworkConfig memory config = helperConfig.getConfig();
+        console2.log("entry point is ", config.entryPoint);
+        assertEq(usdc.balanceOf(address(smartcontractAccount)), 0);
+        address dest = address(usdc);
+        uint256 value = 0;
+        bytes memory functionData = abi.encodeWithSelector(
+            ERC20Mock.mint.selector,
+            address(smartcontractAccount),
+            AMOUNT
+        );
+        // Act
+        vm.prank(config.entryPoint);
         smartcontractAccount.execute(dest, value, functionData);
 
         // Assert
