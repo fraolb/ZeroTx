@@ -4,4 +4,10 @@ out = "out"
 libs = ["lib"]
 remappings = ['@openzeppelin/contracts=lib/openzeppelin-contracts/contracts','@account-abstraction/contracts/=lib/account-abstraction/contracts/']
 
+[rpc_endpoints]
+alfajores = "https://alfajores-forno.celo-testnet.org"
+
+[etherscan]
+alfajores = { key = "", url = "https://alfajores.celoscan.io/" }
+
 # See more config options https://github.com/foundry-rs/foundry/blob/master/crates/config/README.md#all-options
