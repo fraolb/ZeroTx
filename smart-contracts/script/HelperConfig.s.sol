@@ -31,7 +31,7 @@ contract HelperConfig is Script {
     // address constant FOUNDRY_DEFAULT_WALLET = 0x1804c8AB1F12E6bbf3894d4083f33e07309d1f38;
     address constant ANVIL_DEFAULT_ACCOUNT =
         0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266;
-    address constant BURNER_WALLET = 0x643315C9Be056cDEA171F4e7b2222a4ddaB9F88D;
+    address constant BURNER_WALLET = 0x3756E382Cfe55CAA9a1Ec9D40fc3aC45b0abf8E6;
 
     NetworkConfig public localNetworkConfig;
     mapping(uint256 chainId => NetworkConfig) public networkConfigs;
